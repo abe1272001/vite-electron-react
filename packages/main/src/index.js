@@ -16,14 +16,11 @@ app.disableHardwareAcceleration();
 
 // Install "Vue.js devtools"
 if (isDevelopment) {
-  app.whenReady()
-    .then(() => import('electron-devtools-installer'))
-    .then(({default: installExtension, VUEJS3_DEVTOOLS}) => installExtension(VUEJS3_DEVTOOLS, {
-      loadExtensionOptions: {
-        allowFileAccess: true,
-      },
-    }))
-    .catch(e => console.error('Failed install extension:', e));
+  app.whenReady().then(() => {
+    installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS])
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log('An error occurred: ', err));
+  });
 }
 
 let mainWindow = null;
@@ -135,13 +132,8 @@ app.whenReady()
 
 // Auto-updates
 if (import.meta.env.PROD) {
-  app.whenReady().then(() => {
-    installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS])
-      .then((name) => console.log(`Added Extension:  ${name}`))
-      .catch((err) => console.log('An error occurred: ', err));
-  });
+  app.whenReady()
+    .then(() => import('electron-updater'))
+    .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
+    .catch((e) => console.error('Failed check updates:', e));
 }
-
-
-
-
