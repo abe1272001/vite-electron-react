@@ -1,15 +1,29 @@
 {
   "env": {
     "browser": true,
-    "node": false
+    "es2021": true
   },
   "extends": [
-    /** @see https://eslint.vuejs.org/rules/ */
-    "plugin:vue/vue3-recommended"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parserOptions": {
-    "parser": "@typescript-eslint/parser",
-    "ecmaVersion": 12,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
     "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "comma-dangle": ["error", "never"]
   }
 }

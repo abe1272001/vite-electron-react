@@ -1,9 +1,8 @@
-import type {ElectronApplication} from 'playwright';
 import {_electron as electron} from 'playwright';
 import {afterAll, beforeAll, expect, test} from 'vitest';
 import {createHash} from 'crypto';
 
-let electronApp: ElectronApplication;
+let electronApp;
 
 beforeAll(async () => {
   electronApp = await electron.launch({args: ['.']});
@@ -14,7 +13,7 @@ afterAll(async () => {
 });
 
 test('Main window state', async () => {
-  const windowState: { isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean }
+  const windowState
     = await electronApp.evaluate(({BrowserWindow}) => {
     const mainWindow = BrowserWindow.getAllWindows()[0];
 
