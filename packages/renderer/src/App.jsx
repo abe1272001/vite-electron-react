@@ -1,25 +1,17 @@
-import { useState } from 'react';
-import logo from '../assets/logo.svg';
-import './App.css';
+import Layout from './components/layout/Layout';
 import TodoList from './features/todoList/TodoList.jsx';
+import './app.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>HIHI</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <TodoList/>
-      </header>
-    </div>
+    <Layout>
+      <div className="App">
+          <h1 className="text-3xl font-bold underline">
+            Hello world!
+          </h1>
+          <TodoList/>
+      </div>
+    </Layout>
   );
 }
 

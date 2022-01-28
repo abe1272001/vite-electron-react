@@ -14,10 +14,13 @@ if (!isSingleInstance) {
 
 app.disableHardwareAcceleration();
 
-// Install "Vue.js devtools"
+// Install "React.js devtools"
 if (isDevelopment) {
   app.whenReady().then(() => {
-    installExtension([REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS])
+    installExtension(REACT_DEVELOPER_TOOLS)
+      .then((name) => console.log(`Added Extension:  ${name}`))
+      .catch((err) => console.log('An error occurred: ', err));
+    installExtension(REDUX_DEVTOOLS)
       .then((name) => console.log(`Added Extension:  ${name}`))
       .catch((err) => console.log('An error occurred: ', err));
   });

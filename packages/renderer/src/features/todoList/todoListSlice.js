@@ -19,6 +19,9 @@ export const todoListSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       state.todos.push(action.payload);
+    },
+    removeTodo: (state, action) => {
+      state.todos = state.todos.slice(action.payload.index, 1);
     }
   }
 });
